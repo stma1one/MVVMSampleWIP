@@ -5,9 +5,9 @@
 -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:MVVMSample.ViewModels"
+             xmlns:viewmodels="clr-namespace:MVVMSample.ViewModels"
              xmlns:models="clr-namespace:MVVMSample.Models"
-             x:DataType="viewmodel:ViewToysPageViewModel"
+             x:DataType="viewmodels:ViewToysPageViewModel"
              xmlns:helpers="clr-namespace:MVVMSample.Helpers"
              x:Class="MVVMSample.Views.ViewToysPage">
 
@@ -76,12 +76,17 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Toy">
                         <SwipeView>
+                            <!--  SwipeView.TopItems,SwipeView.RightItems,SwipeView.BottomItems  -->
                             <SwipeView.LeftItems>
                                 <SwipeItems>
-                                    <SwipeItem Command="{Binding DeleteCommand, Source={x:RelativeSource AncestorType={x:Type viewmodel:ViewToysPageViewModel}, Mode=FindAncestorBindingContext}}"
+                                    <SwipeItem Command="{Binding DeleteCommand, Source={x:RelativeSource AncestorType={x:Type viewmodels:ViewToysPageViewModel}, Mode=FindAncestorBindingContext}}"
                                                CommandParameter="{Binding .}"
                                                Text="מחק"
-                                               BackgroundColor="Pink" />
+                                               BackgroundColor="Pink">
+                                        <SwipeItem.IconImageSource>
+                                            <FontImageSource FontFamily="MaterialSymbols" Glyph="{x:Static helpers:IconFont.Delete}" />
+                                        </SwipeItem.IconImageSource>
+                                    </SwipeItem>
 
 
                                 </SwipeItems>
